@@ -1,32 +1,15 @@
 <?php
 session_start();
 $usuarios = ctrUsuarios::ctrMostrarUsuarios();
-
 $roles = ctrRoles::ctrMostrarRoles2();
 
-
 //var_dump($roles);
-
 //echo "</pre>";  print_r($roles); echo "</pre>";
 
-if(isset($_SESSION["idBackend"])){
-
-
-    $admin=ctrUsuarios::ctrMostrarUsuarios1("id", $_SESSION["idBackend"]);
-
-
+if (isset($_SESSION["idBackend"])) {
+    $admin = ctrUsuarios::ctrMostrarUsuarios1("id", $_SESSION["idBackend"]);
 }
-
-
-
-
-
-
-
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +23,7 @@ if(isset($_SESSION["idBackend"])){
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css"
-        integrity="zmfNZmXoNWBMemUOo1XUGFfc0ihGGLYdgtJS3KCr/l0=">
+        integrity="sha384-5A6NHbdztD2z8bN6HlNWmZ2fhFpP9f55B5AIBx1JOJb7eEb69EB9B12AlY1B3ACs" crossorigin="anonymous">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="vistas/recursos/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -56,7 +39,6 @@ if(isset($_SESSION["idBackend"])){
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="vistas/recursos/dist/css/skins/_all-skins.min.css">
 
-
     <script src="vistas/js/sweetalert2.all.js"></script>
 
     <!-- Google Font -->
@@ -64,55 +46,25 @@ if(isset($_SESSION["idBackend"])){
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-
-<?php if(!isset($_SESSION["validarSession"])):
-
-
-
-include "paginas/login.php";
-
-
-
-
-?>
-
-
+<?php if (!isset($_SESSION["validarSession"])): ?>
+    <?php include "paginas/login.php"; ?>
 <?php else: ?>
-
-
-
 <body class="hold-transition skin-blue sidebar-mini">
-
     <div class="wrapper">
-
         <?php include "modulos/header.php"; ?>
-
         <!-- =============================================== -->
-
-
         <?php include "modulos/menu.php"; ?>
         <!-- =============================================== -->
-
-        <?php 
-
-        if(isset($_GET["pagina"])){
-
-            if($_GET["pagina"]== "usuarios" ||
-               $_GET["pagina"]== "salir" ||
-               $_GET["pagina"]== "roles"){
-
-                include "paginas/".$_GET["pagina"].".php";
-
+        <?php
+        if (isset($_GET["pagina"])) {
+            if ($_GET["pagina"] == "usuarios" ||
+                $_GET["pagina"] == "salir" ||
+                $_GET["pagina"] == "roles") {
+                include "paginas/" . $_GET["pagina"] . ".php";
             }
-
         }
-                          
         ?>
-
         <?php include "modulos/footer.php"; ?>
-
-
-
     </div>
     <!-- ./wrapper -->
 
@@ -130,18 +82,15 @@ include "paginas/login.php";
     <script src="vistas/recursos/dist/js/demo.js"></script>
 
     <script src="vistas/recursos/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-
     <script src="vistas/recursos/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
     <script src="vistas/js/usuarios.js"></script>
     <script src="vistas/js/roles.js"></script>
     <script>
-    $(document).ready(function() {
-        $('.sidebar-menu').tree()
-    })
+        $(document).ready(function () {
+            $('.sidebar-menu').tree()
+        })
     </script>
 </body>
-
 <?php endif ?>
-
 </html>
